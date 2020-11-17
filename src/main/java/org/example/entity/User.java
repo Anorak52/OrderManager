@@ -4,7 +4,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Set;
 
@@ -13,15 +12,35 @@ import java.util.Set;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //пофиксить
+    @Column(name = "id", nullable = false, insertable = true, updatable = true)
     private Long id;
+    @Column
     private String username;
+    @Column
     private String password;
     @Transient // не имеет отображения в БД
     private String passwordConfirm;
     @ManyToMany(fetch = FetchType.EAGER) //список ролек вместе с user загружается
     private Set<Role> roles;
 
-    public User() {
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")  //в классе владельца
+    private Set<Order> orders; //Set - потому что не может быть два одинаковых заказа
+
+    public Set<Order> getOrders(){
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -81,14 +100,6 @@ public class User implements UserDetails {
 
     public void setPasswordConfirm(String passwordConfirm) {
         this.passwordConfirm = passwordConfirm;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
     }
 
 }

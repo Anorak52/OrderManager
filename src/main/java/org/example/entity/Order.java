@@ -3,9 +3,10 @@ package org.example.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "order")
+@Table(name = "order_table")
 public class Order {
 
     @Id
@@ -22,6 +23,10 @@ public class Order {
     private Long idOfCreature;
     @Column(name = "deleted")
     private Long idOfRemoved;
+
+    @ManyToOne(optional=false, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "users_id")
+    private User users;
 
     public Long getId() {
         return id;
