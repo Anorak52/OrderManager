@@ -12,7 +12,7 @@
 <body>
 <div>
   <form:form method="POST" modelAttribute="userForm">
-    <h2>Регистрация</h2>
+    <h2>Registration page</h2>
     <div>
       <form:input type="text" path="username" placeholder="Username"
                   autofocus="true"></form:input>
@@ -28,9 +28,9 @@
       <form:errors path="password"></form:errors>
         ${passwordError}
     </div>
-    <button type="submit">Зарегистрироваться</button>
+    <button type="submit">Submit</button>
   </form:form>
-  <a href="/">Главная</a>
+  <a href="/">Main</a>
 </div>
 </body>
 </html>

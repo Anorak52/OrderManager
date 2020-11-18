@@ -20,5 +20,11 @@ public class OrderService {
         orderRepository.save(order);
     }
 
-    public void removeOrder(Order order) {  }
+    public boolean deleteOrder(Long orderId) {
+        if(orderRepository.findById(orderId).isPresent()) {
+            orderRepository.deleteById(orderId);
+            return true;
+        }
+        return false;
+    }
 }

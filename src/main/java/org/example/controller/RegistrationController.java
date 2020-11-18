@@ -20,13 +20,15 @@ public class RegistrationController {
 
     @GetMapping("/registration")
     public String registration(Model model) {
-        model.addAttribute("userForm", new User());
+        model.addAttribute("userForm", new User()); //что бы не получать по одному
 
         return "registration";
     }
 
     @PostMapping("/registration")
-    public String addUser(@ModelAttribute("userForm") @Valid User userForm, BindingResult bindingResult, Model model) {
+    public String addUser(@ModelAttribute("userForm") @Valid User userForm,
+                          BindingResult bindingResult,
+                          Model model) { //for rendering views
 
         if (bindingResult.hasErrors()) {
             return "registration";

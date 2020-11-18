@@ -38,7 +38,7 @@
       </tr>
     </c:forEach>
   </table>
-  <a href="/">Главная</a>
+  <a href="/">Main</a>
 </div>
 </body>
 </html>
