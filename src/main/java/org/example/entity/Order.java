@@ -14,8 +14,10 @@ public class Order {
     @Column
     private String username;
     @Column
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date registrationData;
     @Column
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date creatureDate;
     @Column
     private String orderComment;
@@ -36,11 +38,11 @@ public class Order {
         this.id = id;
     }
 
-    public String getName() {
+    public String getUsername() {
         return username;
     }
 
-    public void setName(String name) {
+    public void setUsername(String name) {
         this.username = name;
     }
 
@@ -60,23 +62,23 @@ public class Order {
         this.creatureDate = creatureDate;
     }
 
-    public String getComment() {
+    public String getOrderComment() {
         return orderComment;
     }
 
-    public void setComment(String comment) {
-        this.orderComment = comment;
+    public void setOrderComment(String orderComment) {
+        this.orderComment = orderComment;
     }
-
-    /*public Long getIdOfCreature() {
+/*
+    public Long getIdOfCreature() {
         return idOfCreature;
     }
 
     public void setIdOfCreature(Long idOfCreature) {
         this.idOfCreature = idOfCreature;
-    }*/
+    }
 
-    /*public Long getIdOfRemoved() {
+    public Long getIdOfRemoved() {
         return idOfRemoved;
     }
 
@@ -84,6 +86,4 @@ public class Order {
         this.idOfRemoved = idOfRemoved;
     }*/
 
-    /*public void setDeleted(boolean b) {
-    }*/
 }

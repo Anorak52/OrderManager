@@ -14,7 +14,7 @@ public class OrderController {
 
     @GetMapping("/order")
     public String orderList(Model model) {
-        model.addAttribute("allUsers", orderService.allOrder());
+        model.addAttribute("allOrder", orderService.allOrder());
         return "order";
     }
 
@@ -37,7 +37,7 @@ public class OrderController {
     }
 
     @GetMapping("/order/gt/{orderId}")
-    public String getOrder(@PathVariable("orderId") Long orderId, Model model) {
+    public String gtUser(@PathVariable("orderId") Long orderId, Model model) {
         model.addAttribute("allOrders", orderService.orderGetList(orderId));
         return "order";
     }
