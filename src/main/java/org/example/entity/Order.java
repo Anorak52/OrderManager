@@ -1,30 +1,30 @@
 package org.example.entity;
 
-
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "order_table")
 public class Order {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, insertable = true, updatable = true)
     private Long id;
     @Column
-    private String name;
+    private String username;
     @Column
     private Date registrationData;
     @Column
     private Date creatureDate;
     @Column
-    private String comment;
-    @Column(name = "created")
-    private Long idOfCreature;
-    @Column(name = "deleted")
-    private Long idOfRemoved;
+    private String orderComment;
+    /*@Column(name = "created by")
+    private Long idOfCreature;*/
+    /*@Column(name = "deleted by")
+    private Long idOfRemoved;*/
 
-    @ManyToOne(optional=false, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(optional=false, fetch = FetchType.LAZY)
     @JoinColumn(name = "users_id")
     private User users;
 
@@ -37,11 +37,11 @@ public class Order {
     }
 
     public String getName() {
-        return name;
+        return username;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.username = name;
     }
 
     public Date getRegistrationData() {
@@ -61,26 +61,29 @@ public class Order {
     }
 
     public String getComment() {
-        return comment;
+        return orderComment;
     }
 
     public void setComment(String comment) {
-        this.comment = comment;
+        this.orderComment = comment;
     }
 
-    public Long getIdOfCreature() {
+    /*public Long getIdOfCreature() {
         return idOfCreature;
     }
 
     public void setIdOfCreature(Long idOfCreature) {
         this.idOfCreature = idOfCreature;
-    }
+    }*/
 
-    public Long getIdOfRemoved() {
+    /*public Long getIdOfRemoved() {
         return idOfRemoved;
     }
 
     public void setIdOfRemoved(Long idOfRemoved) {
         this.idOfRemoved = idOfRemoved;
-    }
+    }*/
+
+    /*public void setDeleted(boolean b) {
+    }*/
 }

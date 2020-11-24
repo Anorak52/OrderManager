@@ -12,13 +12,33 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @PostMapping("/orderManagment")
-    public String  deleteUser(@RequestParam(required = true, defaultValue = "" ) Long userId,
+    @GetMapping("/order")
+    public String orderList(Model model) {
+        model.addAttribute("allUsers", orderService.allOrder());
+        return "order";
+    }
+
+    @PostMapping("/order")
+    public String deleteOrder(@RequestParam(required = true, defaultValue = "" ) Long userId,
                               @RequestParam(required = true, defaultValue = "" ) String action,
                               Model model) {
         if (action.equals("delete")){
             orderService.deleteOrder(userId);
         }
-        return "redirect:/orderManagment";
+        return "redirect:/order";
+    }
+
+    //----Upd order
+    @RequestMapping(method = RequestMethod.GET, value = "/{orderId}/edit")
+    public String editProduct(@PathVariable long orderId)
+    {
+        orderService.mergeWithExistingAndUpdate(orderId);
+        return "redirect:/order";
+    }
+
+    @GetMapping("/order/gt/{orderId}")
+    public String getOrder(@PathVariable("orderId") Long orderId, Model model) {
+        model.addAttribute("allOrders", orderService.orderGetList(orderId));
+        return "order";
     }
 }

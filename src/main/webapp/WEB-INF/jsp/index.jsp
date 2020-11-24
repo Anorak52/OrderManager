@@ -19,8 +19,9 @@
   <sec:authorize access="isAuthenticated()">
     <h4><a href="/logout">Exit</a></h4>
   </sec:authorize>
-  <h4><a href="/news">ONLY FOR USER</a></h4>
-  <h4><a href="/admin">ONLY FOR ADMIN</a></h4>
+  <h4><a href="/page">ONLY FOR USER</a></h4>
+  <h4><a href="/admin">users list - ONLY FOR ADMIN</a></h4>
+  <h4><a href="/order">Order - admin role</a></h4>
 </div>
 </body>
 </html>

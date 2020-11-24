@@ -5,8 +5,17 @@ import org.example.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class OrderService {
+
+    @PersistenceContext
+    private EntityManager em;
 
     @Autowired
     private final OrderRepository orderRepository;
@@ -26,5 +35,41 @@ public class OrderService {
             return true;
         }
         return false;
+    }
+
+    public Order findOrderById(Long orderId) {
+        Optional<Order> orderFromDb = orderRepository.findById(orderId);
+        return orderFromDb.orElse(new Order());
+    }
+
+ /*   public void update(Order order) {
+        em.getTransaction().begin();
+        em.merge(order);
+        em.getTransaction().commit();
+    }*/
+
+    public List<Order> allOrder() {
+        return orderRepository.findAll();
+    }
+
+    public List<Order> orderGetList(Long idMin) {
+        return em.createQuery("SELECT p FROM Order p", Order.class)
+                .getResultList();
+    }
+
+    @Transactional
+    public void mergeWithExistingAndUpdate(Long orderId) {
+        final Order existingOrder = findOrderById(orderId);
+
+        existingOrder.setName(existingOrder.getName());
+        existingOrder.setComment(existingOrder.getComment());
+        existingOrder.setCreatureDate(existingOrder.getCreatureDate());
+        //existingOrder.setIdOfRemoved(existingOrder.getIdOfRemoved());
+        existingOrder.setId(existingOrder.getId());
+        //existingOrder.setIdOfCreature(existingOrder.getIdOfCreature());
+        //existingOrder.setIdOfRemoved(existingOrder.getIdOfRemoved());
+        //existingOrder.setIdOfCreature(existingOrder.getIdOfCreature());
+
+        em.flush();
     }
 }

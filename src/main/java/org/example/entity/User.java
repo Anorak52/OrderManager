@@ -22,8 +22,7 @@ public class User implements UserDetails {
     private String passwordConfirm;
     @ManyToMany(fetch = FetchType.EAGER) //список ролек вместе с user загружается
     private Set<Role> roles;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")  //в классе владельца
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "users")  //в классе владельца
     private Set<Order> orders; //Set - потому что не может быть два одинаковых заказа
 
     public Set<Order> getOrders(){
