@@ -19,11 +19,11 @@ public class OrderController {
     }
 
     @PostMapping("/order")
-    public String deleteOrder(@RequestParam(required = true, defaultValue = "" ) Long userId,
+    public String deleteOrder(@RequestParam(required = true, defaultValue = "" ) Long orderId,
                               @RequestParam(required = true, defaultValue = "" ) String action,
                               Model model) {
         if (action.equals("delete")){
-            orderService.deleteOrder(userId);
+            orderService.deleteOrder(orderId);
         }
         return "redirect:/order";
     }

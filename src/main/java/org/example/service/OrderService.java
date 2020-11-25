@@ -55,7 +55,7 @@ public class OrderService {
     public void mergeWithExistingAndUpdate(Long orderId) {
         final Order existingOrder = findOrderById(orderId);
 
-        existingOrder.setUsername(existingOrder.getUsername());
+        existingOrder.setOrdername(existingOrder.getOrdername());
         existingOrder.setOrderComment(existingOrder.getOrderComment());
         existingOrder.setCreatureDate(existingOrder.getCreatureDate());
         //existingOrder.setIdOfRemoved(existingOrder.getIdOfRemoved());

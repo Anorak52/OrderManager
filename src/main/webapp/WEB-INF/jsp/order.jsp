@@ -14,7 +14,7 @@
     <table>
         <thead>
         <th>ID</th>
-        <th>Username</th>
+        <th>Ordername</th>
         <th>registration date</th>
         <th>creature Date</th>
         <th>comment</th>
@@ -22,10 +22,17 @@
         <c:forEach items="${allOrder}" var="order">
             <tr>
                 <td>${order.id}</td>
-                <td>${order.username}</td>
+                <td>${order.ordername}</td>
                 <td>${order.registrationData}</td>
                 <td>${order.creatureDate}</td>
                 <td>${order.orderComment}</td>
+                <td>
+                    <form action="${pageContext.request.contextPath}/order" method="post">
+                        <input type="hidden" name="orderId" value="${order.id}"/>
+                        <input type="hidden" name="action" value="delete"/>
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
             </tr>
         </c:forEach>
     </table>

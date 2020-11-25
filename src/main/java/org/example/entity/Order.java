@@ -12,7 +12,7 @@ public class Order {
     @Column(name = "id", nullable = false, insertable = true, updatable = true)
     private Long id;
     @Column
-    private String username;
+    private String ordername;
     @Column
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date registrationData;
@@ -38,12 +38,12 @@ public class Order {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getOrdername() {
+        return ordername;
     }
 
-    public void setUsername(String name) {
-        this.username = name;
+    public void setOrdername(String ordername) {
+        this.ordername = ordername;
     }
 
     public Date getRegistrationData() {
